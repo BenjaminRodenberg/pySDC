@@ -94,13 +94,14 @@ def individual_test(num_nodes, quad_type, residual_type, imex, initGuess, useNCC
         my_env['COVERAGE_PROCESS_START'] = 'pyproject.toml'
 
         if os.environ.get('SYSTEMNAME') == "juwels":
-            cmd = f"srun -n {num_nodes} --hint=nomultithread --cpus-per-task=6 python {__file__} --test_sweeper {num_nodes} {quad_type} {residual_type} {imex} {initGuess} {useNCCL}".split()
+            cmd = f"srun --ntasks={num_nodes} --hint=nomultithread --cpus-per-task=6 python {__file__} --test_sweeper {num_nodes} {quad_type} {residual_type} {imex} {initGuess} {useNCCL}".split()
         else:
             cmd = f"mpirun -np {num_nodes} python {__file__} --test_sweeper {num_nodes} {quad_type} {residual_type} {imex} {initGuess} {useNCCL}".split()
 
         p = subprocess.Popen(cmd, env=my_env, cwd=".")
-
+        print(f"Started job with {num_nodes} tasks.")
         p.wait()
+        print(f"Finished job with {num_nodes} tasks.")
         assert p.returncode == 0, 'ERROR: did not get return code 0, got %s with %2i processes' % (
             p.returncode,
             num_nodes,

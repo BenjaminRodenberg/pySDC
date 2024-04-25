@@ -1,7 +1,7 @@
 #!/bin/bash -x
 #SBATCH --account=cstma
 #SBATCH --nodes=1
-#SBATCH --time=00:20:00
+#SBATCH --time=00:15:00
 #SBATCH --partition=develgpus
 #SBATCH --output=sbatch.out
 #SBATCH --error=sbatch.err
