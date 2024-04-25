@@ -67,7 +67,6 @@ test_JUWELS:
     - module load CuPy
   script:
     # - touch benchmarks/output.json
-    - alias mpirun='srun'
     - echo $SYSTEMNAME
     - sbatch --wait etc/juwels_${SHELL_SCRIPT}.sh
     - touch .coverage.empty
