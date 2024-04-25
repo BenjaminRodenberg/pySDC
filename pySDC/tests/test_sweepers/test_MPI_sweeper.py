@@ -157,7 +157,7 @@ def test_sweeper(num_nodes, quad_type, residual_type, imex, initGuess, launch=Tr
 
 
 @pytest.mark.cupy
-@pytest.mark.parametrize("num_nodes", [2])
+@pytest.mark.parametrize("num_nodes", [4])
 @pytest.mark.parametrize("quad_type", ['GAUSS', 'RADAU-RIGHT'])
 @pytest.mark.parametrize("residual_type", ['last_abs', 'full_rel'])
 @pytest.mark.parametrize("imex", [False])
