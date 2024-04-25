@@ -6,4 +6,4 @@
 #SBATCH --output=sbatch.out
 #SBATCH --error=sbatch.err
 
-srun python -m coverage run -m pytest --continue-on-collection-errors -v pySDC/tests -m "cupy"
+srun --cpu-bind=sockets --cpus-per-task=6 --gpus-per-task=1 python -m coverage run -m pytest --continue-on-collection-errors -v pySDC/tests -m "cupy"
